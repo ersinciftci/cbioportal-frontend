@@ -571,30 +571,6 @@ export default class StudyViewPage extends React.Component<IStudyViewPageProps, 
                     key={arrayIndex} />);
     };
 
-    renderSurvivalPlot = (data: SurvivalType) => {
-        return <div className={styles.survivalPlot}>
-            <SurvivalChart alteredPatientSurvivals={data.alteredGroup}
-                           unalteredPatientSurvivals={data.unalteredGroup}
-                           title={'test'}
-                           xAxisLabel="Months Survival"
-                           yAxisLabel="Overall Survival"
-                           totalCasesHeader="Number of Cases, Total"
-                           statusCasesHeader="Number of Cases, Deceased"
-                           medianMonthsHeader="Median Months Survival"
-                           yLabelTooltip="Survival estimate"
-                           xLabelWithEventTooltip="Time of death"
-                           xLabelWithoutEventTooltip="Time of last observation"
-                           showDownloadButtons={false}
-                           showTable={false}
-                           showLegend={false}
-                           styleOpts={{
-                               width: 500,
-                               height: 300
-                           }}
-                           fileName="Overall_Survival"/>
-        </div>
-    }
-
     render(){
         let mutatedGeneData = this.store.mutatedGeneData.result;
         let cnaGeneData = this.store.cnaGeneData.result;
@@ -608,14 +584,7 @@ export default class StudyViewPage extends React.Component<IStudyViewPageProps, 
                         </div>
                     )
                 }
-                {
-                    this.store.survivalPlotData.isComplete &&
-                    (
-                        <div>
-                            {this.store.survivalPlotData.result.map(this.renderSurvivalPlot)}
-                        </div>
-                    )
-                }
+
                 {(this.store.mutatedGeneData.isComplete && <MutatedGenesTable
                     data={mutatedGeneData}
                     numOfSelectedSamples={100}
